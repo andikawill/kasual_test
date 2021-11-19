@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+$router->get("/", function () {
+    return "powered by @andikawill ".date('Y');
 });
+$router->get("/test_spreadsheet", "App\Http\Controllers\TestSpreadsheetController@index");
