@@ -30,11 +30,24 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <style>
+        .logoKasual{
+            display: table;
+            font-size: 3vw;
+            line-height: 100%;
+            letter-spacing: 8px;
+            color: #073466;
+            transition: 0.3s ease;
+            margin: 5px 0 0 0 !important;
+            padding: 0 !important;
+        }
+
+    </style>
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="{{ url('/home') }}"><b>{{ config('app.name') }}</b></a>
+        <a href="{{ url('/home') }}"><h1 class="display-3 logoKasual">{{ config('app.name') }}</h1></a>
     </div>
 
     <!-- /.login-logo -->
