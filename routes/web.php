@@ -1,7 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,32 @@ use App\Http\Controllers;
 |
 */
 
-$router->get("/", function () {
-    return "powered by @andikawill ".date('Y');
+Route::get('/', function () {
+    return view('welcome');
 });
-$router->get("/test_spreadsheet", "App\Http\Controllers\TestSpreadsheetController@index");
+
+Route::get('storage/{filename}', function ($filename)
+{
+    $path = storage_path('public/' . $filename);
+
+    if (!File::exists($path)) {
+        abort(404);
+    }
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+
+    return $response;
+});
+
+Auth::routes();
+
+Route::get('/home', [
+    HomeController::class, 'index'
+])->name('home');
+
+
+Route::resource('spreadsheets', App\Http\Controllers\spreadsheetController::class);

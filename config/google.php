@@ -6,7 +6,7 @@ return [
     | Google application name
     |----------------------------------------------------------------------------
     */
-    "application_name" => env("GOOGLE_APPLICATION_NAME", ""),
+    'application_name' => env('GOOGLE_APPLICATION_NAME', ''),
 
     /*
     |----------------------------------------------------------------------------
@@ -17,13 +17,11 @@ return [
     | https://developers.google.com/console
     |
     */
-    // config/google.php
-
-    // OAuth
-    "post_spreadsheet_id" => env("POST_SPREADSHEET_ID", ""),
-    "post_sheet_id" => env("POST_SHEET_ID", ""),
+    "spreadsheet_id" => env("GOOGLE_DRIVE_FOLDER_ID", ""),
+    "sheet_id" => env("GOOGLE_DRIVE_SHEET_ID", ""),
     "client_id" => env("GOOGLE_CLIENT_ID", ""),
     "client_secret" => env("GOOGLE_CLIENT_SECRET", ""),
+    'redirect_uri'     => env('GOOGLE_REDIRECT', ''),
     "redirect_uri" => env("GOOGLE_REDIRECT", ""),
     "scopes" => [
         \Google\Service\Sheets::DRIVE,
@@ -33,9 +31,12 @@ return [
     "approval_prompt" => "auto",
     "prompt" => "consent", //"none", "consent", "select_account" default:none
 
+    'refreshToken' => env('GOOGLE_DRIVE_REFRESH_TOKEN',""),
+
     // or Service Account
-    "file" => storage_path("credentials.json"),
-    "enable" => env("GOOGLE_SERVICE_ENABLED", true),
+    // "file" => storage_path("credentials.json"),
+    // "enable" => env("GOOGLE_SERVICE_ENABLED", true),
+
     /*
     |----------------------------------------------------------------------------
     | Google developer key
@@ -45,7 +46,7 @@ return [
     | a Server key, and not a Browser key.
     |
     */
-    "developer_key" => env("GOOGLE_DEVELOPER_KEY", ""),
+    'developer_key' => env('GOOGLE_DEVELOPER_KEY', ''),
 
     /*
     |----------------------------------------------------------------------------
@@ -56,17 +57,17 @@ return [
     | app engine or compute engine will be used.
     |
     */
-    "service" => [
+    'service' => [
         /*
         | Enable service account auth or not.
         */
-        "enable" => env("GOOGLE_SERVICE_ENABLED", false),
+        'enable' => env('GOOGLE_SERVICE_ENABLED', true),
 
         /*
          * Path to service account json file. You can also pass the credentials as an array
          * instead of a file path.
          */
-        "file" => env("GOOGLE_SERVICE_ACCOUNT_JSON_LOCATION", ""),
+        'file' => env('GOOGLE_SERVICE_ACCOUNT_JSON_LOCATION', ''),
     ],
 
     /*
@@ -81,5 +82,5 @@ return [
     | NOTE: If client id is specified here, it will get over written by the one above.
     |
     */
-    "config" => [],
+    'config' => [],
 ];
