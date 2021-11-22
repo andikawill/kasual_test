@@ -144,17 +144,15 @@ class spreadsheetController extends AppBaseController
      */
     public function show($id)
     {
-        // $spreadsheet = $this->spreadsheetRepository->find($id);
+        $get_range = $this->get_range($id);
 
+        $range = 'A'.$get_range.':'.'F'.$get_range;
         $sheets = Sheets::spreadsheet(config("google.spreadsheet_id"))
             ->sheet(config("google.sheet_id"))
             ->get();
         $header = $sheets->pull(0);
         $posts = Sheets::collection($header, $sheets);
-        $spreadsheet = $posts->get($id);
-
-
-        // print_r($range);
+        $spreadsheet = $posts->get($get_range-1);
 
         if (empty($spreadsheet)) {
             Flash::error('Spreadsheet not found');
